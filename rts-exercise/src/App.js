@@ -3,6 +3,7 @@ import Search from './components/Search';
 import './App.css';
 import axios from 'axios';
 import Results from './components/Results';
+import store from './store/';
 
 function App() {
 	const [state, setState] = useState({
@@ -10,11 +11,11 @@ function App() {
 		results: [],
 	});
 
-	const searchUrls = 'http://hn.algolia.com/api/v1/search?tags=story';
+	const searchUrl = 'http://hn.algolia.com/api/v1/search?tags=story';
 
 	const search = (e) => {
 		if (e.key === 'Enter') {
-			axios(searchUrls + '&query=' + state.query).then(({ data }) => {
+			axios(searchUrl + '&query=' + state.query).then(({ data }) => {
 				let results = data.hits;
 				setState((prevState) => {
 					return { ...prevState, results: results };
@@ -32,7 +33,7 @@ function App() {
 	};
 	return (
 		<div>
-			<Search handleInput={handleInput} search={search} />
+			<Search handleInput={handleInput} search={search} store={store} />
 			<Results results={state.results} />
 		</div>
 	);

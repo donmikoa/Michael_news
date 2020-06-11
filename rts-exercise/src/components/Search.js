@@ -1,5 +1,6 @@
 import React from 'react';
 import '../search.css';
+import { connect } from 'react-redux';
 
 function Search({ handleInput, search }) {
 	return (
@@ -10,7 +11,7 @@ function Search({ handleInput, search }) {
 					type='text'
 					name='query'
 					id='search-input'
-					placeholder='Search latest news...'
+					placeholder='Search...'
 					onChange={handleInput}
 					onKeyPress={search}
 				/>
@@ -21,4 +22,19 @@ function Search({ handleInput, search }) {
 	);
 }
 
-export default Search;
+const mapStateToProps = (state) => {
+	return {
+		inputValue: state.search,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		handleInput: (evt) => {
+			const action = { type: 'INPUT_CHANGE', text: evt.target.value };
+			dispatch(action);
+		},
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
