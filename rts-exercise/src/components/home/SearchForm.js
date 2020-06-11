@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { searchNews, fetchNews } from '../../actions/searchActions';
+import { searchNews, fetchNews, setLoading } from '../../actions/searchActions';
 import { connect } from 'react-redux';
 
+//This contains the entire search component
 export class SearchForm extends Component {
 	onChange = (e) => {
 		this.props.searchNews(e.target.value);
 	};
 
+	//Function to be initialized on the click of submission button
 	onSubmit = (e) => {
 		e.preventDefault();
 		this.props.fetchNews(this.props.text);
+		this.props.setLoading();
 	};
 
 	render() {
@@ -39,4 +42,6 @@ const mapStateToProps = (state) => ({
 	text: state.news.text,
 });
 
-export default connect(mapStateToProps, { searchNews, fetchNews })(SearchForm);
+export default connect(mapStateToProps, { searchNews, fetchNews, setLoading })(
+	SearchForm
+);

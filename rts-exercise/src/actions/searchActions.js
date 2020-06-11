@@ -1,4 +1,4 @@
-import { SEARCH_NEWS, FETCH_NEWS } from './types';
+import { SEARCH_NEWS, FETCH_NEWS, LOADING } from './types';
 import axios from 'axios';
 
 export const searchNews = (text) => (dispatch) => {
@@ -18,4 +18,10 @@ export const fetchNews = (text) => (dispatch) => {
 			})
 		)
 		.catch((err) => console.log(err));
+};
+
+export const setLoading = () => {
+	return {
+		type: LOADING,
+	};
 };

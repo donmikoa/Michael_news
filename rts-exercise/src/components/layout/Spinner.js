@@ -1,6 +1,7 @@
 import React from 'react';
 import spinner from './spinner.gif';
 
+//Implementing the loader
 function Spinner() {
 	return (
 		<div>

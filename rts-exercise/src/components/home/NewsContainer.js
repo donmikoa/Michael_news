@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Article from './Article';
 
+//Responsible for loading the new items.
 export class NewsContainer extends Component {
 	render() {
 		const { news } = this.props;
@@ -13,7 +14,7 @@ export class NewsContainer extends Component {
 						<Article key={index} article={article} />
 				  ))
 				: null;
-		return <div className='row'>{content}</div>;
+		return <div>{content}</div>;
 	}
 }
 

@@ -1,10 +1,10 @@
-import { SEARCH_NEWS, FETCH_NEWS } from '../actions/types';
+import { SEARCH_NEWS, FETCH_NEWS, LOADING } from '../actions/types';
 
 const initialState = {
 	text: '',
 	news: [],
-    loading: false,
-    article:[]
+	loading: false,
+	article: [],
 };
 
 export default function (state = initialState, action) {
@@ -19,6 +19,12 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				news: action.payload,
+				loading: false,
+			};
+		case LOADING:
+			return {
+				...state,
+				loading: true,
 			};
 		default:
 			return state;
